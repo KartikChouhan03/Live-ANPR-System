@@ -1,0 +1,1 @@
+anpr_model/weights/best.pt
