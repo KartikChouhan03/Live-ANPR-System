@@ -100,5 +100,64 @@ Run the main script to start the live ANPR system:
 ```bash
 python live_capture.py
 ```
+## ⌨️ Keyboard Controls
 
+| Key | Action |
+|----|-------|
+| **C** | Capture current frame, detect license plate, and save results |
+| **Q** | Quit the application safely |
+
+---
+
+## 📸 How It Works
+
+### 🔍 Detection
+YOLOv8 scans the live camera frame to detect license plate bounding boxes.
+
+### ✂️ Extraction
+The detected license plate region is cropped from the original frame.
+
+### 🖼️ Preprocessing
+- **Grayscale Conversion** – Simplifies image data  
+- **Gaussian Blur** – Removes high-frequency noise  
+- **OTSU Thresholding** – Binarizes the image for better OCR accuracy  
+
+### 🔠 OCR
+Tesseract OCR extracts alphanumeric characters from the processed image.
+
+### 💾 Storage
+- Detected plate text is appended to `plates.txt`
+- Cropped plate images are saved in `cropped_plates/`
+
+---
+
+## 📄 Output Format
+
+### 1️⃣ Cropped Images (`cropped_plates/`)
+Images are saved using the format:YYYYMMDD_HHMMSS.jpg
+
+### 2️⃣ Text Log (`detected_texts/plates.txt`)
+Plain text format:20260208_161522 - ABC1234
+20260208_161845 - XYZ7890
+
+---
+
+## 🚧 Troubleshooting
+
+### 📷 Camera Not Opening
+Try changing the camera index in `live_capture.py`:
+```python
+cv2.VideoCapture(0)  →  cv2.VideoCapture(1)
+```
+
+🔠 Low OCR Accuracy
+
+Ensure the license plate is well-lit and facing the camera
+
+Adjust Tesseract PSM (Page Segmentation Mode) settings if needed
+
+
+##👨‍💻 Author
+
+Kartık Chouhan
 GitHub: @KartikChouhan03
