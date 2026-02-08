@@ -52,13 +52,13 @@ Live-ANPR-System/
 
 ## 🔧 Installation
 
-### 1️⃣ Clone the Repository
+1️⃣ Clone the Repository
 ```bash
 git clone [https://github.com/KartikChouhan03/Live-ANPR-System.git](https://github.com/KartikChouhan03/Live-ANPR-System.git)
 cd Live-ANPR-System
 ```
 
-###2️⃣ Set Up Virtual Environment
+2️⃣ Set Up Virtual Environment
 ```bash
 python -m venv venv
 
@@ -68,11 +68,11 @@ venv\Scripts\activate
 # Linux/Mac
 source venv/bin/activate
 ```
-###3️⃣ Install Dependencies
+3️⃣ Install Dependencies
 ```Bash
 pip install opencv-python ultralytics pytesseract numpy
 ```
-###4️⃣ Install Tesseract OCR Engine
+4️⃣ Install Tesseract OCR Engine
 Windows: Download from UB-Mannheim. Default path: C:\Program Files\Tesseract-OCR\tesseract.exe.
 Linux: sudo apt install tesseract-ocr
 
@@ -100,67 +100,5 @@ Run the main script to start the live ANPR system:
 ```bash
 python live_capture.py
 ```
-⌨️ Keyboard Controls
-Key	Action
-C	Capture current frame, detect license plate, and save results
-Q	Quit the application safely
-📸 How It Works
-Detection
-YOLOv8 scans the live camera frame to detect license plate bounding boxes.
 
-Extraction
-The detected license plate region is cropped from the original frame.
-
-Preprocessing
-
-Grayscale Conversion – Simplifies image data
-
-Gaussian Blur – Removes high-frequency noise
-
-OTSU Thresholding – Binarizes the image for better OCR accuracy
-
-OCR
-Tesseract OCR extracts alphanumeric characters from the processed image.
-
-Storage
-
-Detected plate text is appended to plates.txt
-
-Cropped plate images are saved in cropped_plates/
-
-📄 Output Format
-1️⃣ Cropped Images (cropped_plates/)
-Images are saved using the format:
-
-YYYYMMDD_HHMMSS.jpg
-2️⃣ Text Log (detected_texts/plates.txt)
-Plain text format:
-
-20260208_161522 - ABC1234
-20260208_161845 - XYZ7890
-🚧 Troubleshooting
-📷 Camera Not Opening
-Try changing the camera index in live_capture.py:
-
-cv2.VideoCapture(0)  →  cv2.VideoCapture(1)
-🔠 Low OCR Accuracy
-Ensure the license plate is well-lit and facing the camera
-
-Adjust Tesseract PSM (Page Segmentation Mode) settings if needed
-
-🤖 Model Errors
-Verify that best.pt exists exactly in:
-
-anpr_model/weights/
-🔮 Future Improvements
- Multi-plate support for multi-lane traffic scenes
-
- Database integration (SQL / Firebase)
-
- Mobile & IP camera support via RTSP streams
-
- FPS optimization using CUDA / OpenVINO
-
-👨‍💻 Author
-Kartık Chouhan
 GitHub: @KartikChouhan03
